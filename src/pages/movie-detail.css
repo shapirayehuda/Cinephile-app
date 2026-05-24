@@ -136,8 +136,6 @@
 
 .movie-detail__title-row .watchlist-btn {
   flex-shrink: 0;
-  font-size: 0.82rem;
-  padding: 0.45rem 0.75rem;
 }
 
 .movie-detail__title {

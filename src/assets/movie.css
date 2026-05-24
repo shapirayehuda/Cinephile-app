@@ -15,9 +15,50 @@
 
 .movie-card__watchlist {
   position: absolute;
-  top: 0.55rem;
-  right: 0.55rem;
+  top: 0.5rem;
+  right: 0.5rem;
   z-index: 2;
+}
+
+.watchlist-card {
+  padding-bottom: 0.5rem;
+}
+
+.watchlist-card__remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  width: calc(100% - 1rem);
+  margin: 0.35rem auto 0;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--error-text) 30%, var(--border));
+  border-radius: 8px;
+  background: transparent;
+  color: var(--error-text);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.watchlist-card__remove:hover {
+  border-color: color-mix(in srgb, var(--error-text) 50%, var(--border));
+  background: color-mix(in srgb, var(--error-text) 10%, var(--bg));
+}
+
+.watchlist-card__remove:focus-visible {
+  outline: 2px solid var(--error-text);
+  outline-offset: 2px;
+}
+
+.watchlist-card__remove-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  font-weight: 400;
 }
 
 .movie-card__link {

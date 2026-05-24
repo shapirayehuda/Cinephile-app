@@ -14,7 +14,11 @@ export function MovieCard({ movie }) {
 
   return (
     <article className="movie-card">
-      <WatchlistButton movie={movie} className="movie-card__watchlist" />
+      <WatchlistButton
+        movie={movie}
+        className="movie-card__watchlist"
+        variant="compact"
+      />
       <Link
         className="movie-card__link"
         to={`/movie/${encodeURIComponent(movie.id)}`}

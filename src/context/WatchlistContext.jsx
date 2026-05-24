@@ -71,6 +71,10 @@ export function WatchlistProvider({ children }) {
     })
   }, [])
 
+  const clearWatchlist = useCallback(() => {
+    setWatchlist([])
+  }, [])
+
   const value = useMemo(
     () => ({
       watchlist,
@@ -79,8 +83,16 @@ export function WatchlistProvider({ children }) {
       addToWatchlist,
       removeFromWatchlist,
       toggleWatchlist,
+      clearWatchlist,
     }),
-    [watchlist, isInWatchlist, addToWatchlist, removeFromWatchlist, toggleWatchlist],
+    [
+      watchlist,
+      isInWatchlist,
+      addToWatchlist,
+      removeFromWatchlist,
+      toggleWatchlist,
+      clearWatchlist,
+    ],
   )
 
   return <WatchlistContext.Provider value={value}>{children}</WatchlistContext.Provider>
