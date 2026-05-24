@@ -29,6 +29,7 @@ export default function HeaderSearch() {
   const navigate = useNavigate()
   const location = useLocation()
   const filterWrapRef = useRef(null)
+  const searchInputRef = useRef(null)
   const searchTriggerRef = useRef(searchTrigger)
   searchTriggerRef.current = searchTrigger
 
@@ -37,6 +38,10 @@ export default function HeaderSearch() {
   const [genres, setGenres] = useState([])
   const [country, setCountry] = useState('')
   const [filtersOpen, setFiltersOpen] = useState(false)
+
+  useEffect(() => {
+    searchInputRef.current?.focus()
+  }, [])
 
   useEffect(() => {
     if (!searchTrigger) {
@@ -126,6 +131,7 @@ export default function HeaderSearch() {
     <form className="header-search" onSubmit={handleSubmit}>
       <div className="header-search__field">
         <input
+          ref={searchInputRef}
           type="search"
           className="header-search__input"
           placeholder="Search movies (updates as you type)…"
