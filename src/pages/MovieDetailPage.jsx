@@ -10,7 +10,8 @@ function disp(v) {
 }
 
 export default function MovieDetailPage() {
-  const { imdbId } = useParams()
+  const { imdbId: imdbIdParam } = useParams()
+  const imdbId = imdbIdParam ? decodeURIComponent(imdbIdParam) : ''
   const [detail, setDetail] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -45,6 +46,19 @@ export default function MovieDetailPage() {
       cancelled = true
     }
   }, [imdbId])
+
+  useEffect(() => {
+    if (detail?.Title) {
+      document.title = `${detail.Title} · Cinephile`
+      return
+    }
+    if (imdbId) {
+      document.title = `${imdbId} · Cinephile`
+    }
+    return () => {
+      document.title = 'cinephile-app'
+    }
+  }, [detail, imdbId])
 
   if (loading) {
     return (

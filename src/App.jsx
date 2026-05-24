@@ -5,6 +5,7 @@ import { ThemeProvider } from './context/ThemeContext'
 import Header from './assets/components/Header'
 import MoviesHomePage from './pages/MoviesHomePage'
 import MovieDetailPage from './pages/MovieDetailPage'
+import NotFoundPage from './pages/NotFoundPage'
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<MoviesHomePage />} />
             <Route path="/movie/:imdbId" element={<MovieDetailPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
       </DiscoveryProvider>
