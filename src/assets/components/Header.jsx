@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useDiscovery } from '../../context/DiscoveryContext'
 import HeaderSearch from './HeaderSearch'
+import ThemeToggle from './ThemeToggle'
 
 export default function Header() {
   const { resetToFeed } = useDiscovery()
@@ -24,7 +25,10 @@ export default function Header() {
           </div>
         </div>
 
-        <HeaderSearch />
+        <div className="site-header__actions">
+          <ThemeToggle />
+          <HeaderSearch />
+        </div>
       </div>
     </header>
   )

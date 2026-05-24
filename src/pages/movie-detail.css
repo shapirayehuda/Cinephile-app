@@ -222,11 +222,5 @@
 }
 
 .movie-detail__status--error {
-  color: #c62828;
-}
-
-@media (prefers-color-scheme: dark) {
-  .movie-detail__status--error {
-    color: #fca5a5;
-  }
+  color: var(--error-text);
 }
