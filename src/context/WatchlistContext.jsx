@@ -16,7 +16,7 @@ function loadWatchlist() {
   }
 }
 
-export function normalizeWatchlistMovie(movie) {
+function normalizeWatchlistMovie(movie) {
   const id = movie?.id ?? movie?.imdbID
   if (!id) return null
 
@@ -47,15 +47,6 @@ export function WatchlistProvider({ children }) {
     [watchlist],
   )
 
-  const addToWatchlist = useCallback((movie) => {
-    const entry = normalizeWatchlistMovie(movie)
-    if (!entry) return
-    setWatchlist((prev) => {
-      if (prev.some((m) => m.id === entry.id)) return prev
-      return [entry, ...prev]
-    })
-  }, [])
-
   const removeFromWatchlist = useCallback((id) => {
     setWatchlist((prev) => prev.filter((m) => m.id !== id))
   }, [])
@@ -80,19 +71,11 @@ export function WatchlistProvider({ children }) {
       watchlist,
       watchlistCount: watchlist.length,
       isInWatchlist,
-      addToWatchlist,
       removeFromWatchlist,
       toggleWatchlist,
       clearWatchlist,
     }),
-    [
-      watchlist,
-      isInWatchlist,
-      addToWatchlist,
-      removeFromWatchlist,
-      toggleWatchlist,
-      clearWatchlist,
-    ],
+    [watchlist, isInWatchlist, removeFromWatchlist, toggleWatchlist, clearWatchlist],
   )
 
   return <WatchlistContext.Provider value={value}>{children}</WatchlistContext.Provider>

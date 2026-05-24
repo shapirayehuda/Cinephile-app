@@ -115,7 +115,7 @@ src/
 | `MovieGridSkeleton.jsx` | רשת skeleton לדף הבית (4 כרטיסים) |
 | `MovieDetailSkeleton.jsx` | שלד לדף פרטי סרט |
 | `LoadMoreSkeleton.jsx` | שלד בטעינת "עוד תוצאות" |
-| `AppLoader.jsx` | ספינר + טקסט (legacy — לא בשימוש פעיל; הוחלף ב-skeleton) |
+| `MoviePosterMedia.jsx` | פוסטר משותף ל-`MovieCard` ו-`WatchlistCard` |
 
 ### דפים (Pages)
 
@@ -139,6 +139,7 @@ src/
 | קובץ | תפקיד |
 |------|--------|
 | `useDebouncedValue.js` | ערך מעוכב בזמן — משמש לחיפוש חי |
+| `useMoviePoster.js` | לוגיקת פוסטר + fallback (משותף לכרטיסים) |
 
 ### API & Utils
 

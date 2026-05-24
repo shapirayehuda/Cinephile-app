@@ -23,10 +23,6 @@ export function ThemeProvider({ children }) {
     localStorage.setItem(STORAGE_KEY, theme)
   }, [theme])
 
-  const setTheme = useCallback((next) => {
-    setThemeState(next === 'dark' ? 'dark' : 'light')
-  }, [])
-
   const toggleTheme = useCallback(() => {
     setThemeState((prev) => (prev === 'dark' ? 'light' : 'dark'))
   }, [])
@@ -34,11 +30,9 @@ export function ThemeProvider({ children }) {
   const value = useMemo(
     () => ({
       theme,
-      isDark: theme === 'dark',
-      setTheme,
       toggleTheme,
     }),
-    [theme, setTheme, toggleTheme],
+    [theme, toggleTheme],
   )
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

@@ -7,14 +7,14 @@ export const MOVIE_SORT_OPTIONS = [
   { value: 'title-desc', label: 'Title (Z–A)' },
 ]
 
-export function yearSortValue(yearStr) {
+function yearSortValue(yearStr) {
   if (!yearStr || yearStr === 'N/A') return 0
   const years = yearStr.match(/\d{4}/g)
   if (!years) return 0
   return Math.max(...years.map(Number))
 }
 
-export function ratingSortValue(rating) {
+function ratingSortValue(rating) {
   if (rating == null || rating === '' || rating === '—') return -1
   const n = Number.parseFloat(String(rating))
   return Number.isFinite(n) ? n : -1

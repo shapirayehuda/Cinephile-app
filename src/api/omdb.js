@@ -84,8 +84,6 @@ function toMovieList(data, options = {}) {
 
 import { sortMoviesNewestFirst } from '../utils/sortMovies.js'
 
-export { sortMoviesNewestFirst }
-
 /**
  * First page of title search (movies only). Use fetchMovieFeedPage for page 2+.
  * @param {string} query
