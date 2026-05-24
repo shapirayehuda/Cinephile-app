@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
+import './assets/skeleton.css'
 import { DiscoveryProvider } from './context/DiscoveryContext'
 import { ThemeProvider } from './context/ThemeContext'
 import { WatchlistProvider } from './context/WatchlistContext'

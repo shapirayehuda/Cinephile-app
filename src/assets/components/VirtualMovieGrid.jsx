@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { VirtuosoGrid } from 'react-virtuoso'
 import { MovieCard } from './movie'
+import LoadMoreSkeleton from './LoadMoreSkeleton'
 import '../movie.css'
 
 /**
@@ -41,10 +42,7 @@ export default function VirtualMovieGrid({ movies, hasMore, loadingMore, onLoadM
       components={{
         Footer: () =>
           loadingMore ? (
-            <div className="virtuoso-footer virtuoso-footer--loading" role="status" aria-live="polite">
-              <div className="app-loader__spinner app-loader__spinner--inline" aria-hidden />
-              <span>Loading more…</span>
-            </div>
+            <LoadMoreSkeleton />
           ) : !hasMore && movies.length > 0 ? (
             <p className="virtuoso-footer virtuoso-footer--muted">No more results</p>
           ) : null,

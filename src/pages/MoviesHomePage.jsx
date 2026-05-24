@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import VirtualMovieGrid from '../assets/components/VirtualMovieGrid'
-import AppLoader from '../assets/components/AppLoader'
+import MovieGridSkeleton from '../assets/components/MovieGridSkeleton'
 import MovieSortSelect from '../assets/components/MovieSortSelect'
 import {
   initMovieFeed,
@@ -210,7 +210,7 @@ export default function MoviesHomePage() {
 
   return (
     <div className="app-layout__main">
-      {loading && <AppLoader label="Loading movies…" />}
+      {loading && <MovieGridSkeleton />}
       {!loading && error && (
         <p className="app-status app-status--error" role="alert">
           {error}

@@ -759,3 +759,141 @@
   opacity: 0.88;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.movie-grid-skeleton {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.movie-grid-skeleton__list {
+  list-style: none;
+  margin: 0;
+}
+
+.movie-card-skeleton {
+  pointer-events: none;
+}
+
+.movie-card-skeleton__poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 6px;
+}
+
+.movie-card-skeleton__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding-top: 0.65rem;
+}
+
+.movie-card-skeleton__title {
+  height: 1.1rem;
+  width: 88%;
+}
+
+.movie-card-skeleton__line {
+  height: 0.75rem;
+  width: 55%;
+}
+
+.movie-card-skeleton__line--short {
+  width: 38%;
+}
+
+.load-more-skeleton__list {
+  list-style: none;
+  margin: 0;
+  padding-bottom: 0.5rem;
+}
+
+.movie-detail-skeleton {
+  padding: 0.25rem 0 1rem;
+}
+
+.movie-detail-skeleton__back {
+  width: 9rem;
+  height: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.movie-detail-skeleton__layout {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) 1fr;
+  gap: 1.5rem 2rem;
+  align-items: start;
+  max-width: 960px;
+}
+
+.movie-detail-skeleton__poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+}
+
+.movie-detail-skeleton__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.movie-detail-skeleton__title {
+  height: 1.75rem;
+  width: min(100%, 20rem);
+}
+
+.movie-detail-skeleton__sub {
+  height: 1rem;
+  width: 12rem;
+}
+
+.movie-detail-skeleton__plot {
+  height: 0.85rem;
+  width: 100%;
+}
+
+.movie-detail-skeleton__plot--short {
+  width: 72%;
+}
+
+.movie-detail-skeleton__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.movie-detail-skeleton__meta-line {
+  height: 0.8rem;
+  width: 100%;
+  max-width: 28rem;
+}
+
+@media (max-width: 768px) {
+  .movie-detail-skeleton__layout {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .movie-detail-skeleton__poster {
+    max-width: min(220px, 72vw);
+  }
+
+  .movie-detail-skeleton__content {
+    width: 100%;
+  }
+}
+

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { fetchMovieByImdbId } from '../api/omdb'
-import AppLoader from '../assets/components/AppLoader'
+import MovieDetailSkeleton from '../assets/components/MovieDetailSkeleton'
 import WatchlistButton from '../assets/components/WatchlistButton'
 import './movie-detail.css'
 
@@ -63,8 +63,10 @@ export default function MovieDetailPage() {
 
   if (loading) {
     return (
-      <main className="movie-detail movie-detail--centered">
-        <AppLoader label="Loading movie…" />
+      <main className="movie-detail">
+        <div className="movie-detail__content">
+          <MovieDetailSkeleton />
+        </div>
       </main>
     )
   }
