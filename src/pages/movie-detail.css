@@ -1,0 +1,232 @@
+.movie-detail {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.movie-detail--centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.movie-detail__backdrop {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: min(42vh, 320px);
+  margin: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.movie-detail__backdrop-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  filter: blur(18px) saturate(1.05);
+  transform: scale(1.08);
+}
+
+.movie-detail__backdrop-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--bg) 25%, transparent) 0%,
+    var(--bg) 92%
+  );
+}
+
+.movie-detail__content {
+  position: relative;
+  z-index: 1;
+  padding: 1rem 1.25rem 2rem;
+  max-width: 100%;
+}
+
+.movie-detail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.movie-detail__back:hover {
+  text-decoration: underline;
+}
+
+.movie-detail__back:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.movie-detail__layout {
+  display: grid;
+  grid-template-columns: minmax(160px, 240px) 1fr;
+  gap: 1.5rem 2rem;
+  align-items: start;
+  max-width: 960px;
+}
+
+@media (max-width: 640px) {
+  .movie-detail__layout {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .movie-detail__meta {
+    text-align: left;
+    width: 100%;
+  }
+}
+
+.movie-detail__poster-wrap {
+  width: 100%;
+  max-width: 240px;
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--border) 40%, var(--bg));
+}
+
+.movie-detail__poster {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.movie-detail__poster-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--text);
+  opacity: 0.6;
+  padding: 1rem;
+  text-align: center;
+}
+
+.movie-detail__title {
+  margin: 0 0 0.35rem;
+  font-family: var(--heading);
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--text-h);
+}
+
+.movie-detail__sub {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  color: var(--text);
+  opacity: 0.9;
+}
+
+.movie-detail__plot {
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--text);
+  max-width: 70ch;
+}
+
+.movie-detail__cast {
+  margin: 0 0 1.35rem;
+  max-width: 70ch;
+}
+
+.movie-detail__cast-title {
+  margin: 0 0 0.5rem;
+  font-family: var(--heading);
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: var(--text-h);
+}
+
+.movie-detail__cast-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.movie-detail__cast-item {
+  display: inline-block;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.88rem;
+  color: var(--text);
+  background: color-mix(in srgb, var(--border) 35%, var(--bg));
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.movie-detail__meta {
+  display: grid;
+  gap: 0.65rem 1.25rem;
+  grid-template-columns: auto 1fr;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.movie-detail__meta dt {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.movie-detail__meta dd {
+  margin: 0;
+  color: var(--text);
+}
+
+.movie-detail__ratings-label {
+  align-self: start;
+}
+
+.movie-detail__ratings ul {
+  margin: 0.35rem 0 0;
+  padding-inline-start: 1.15rem;
+  color: var(--text);
+}
+
+.movie-detail__ratings li {
+  margin: 0.2rem 0;
+}
+
+.movie-detail__status {
+  margin: 0;
+  padding: 1rem;
+  color: var(--text);
+}
+
+.movie-detail__status--error {
+  color: #c62828;
+}
+
+@media (prefers-color-scheme: dark) {
+  .movie-detail__status--error {
+    color: #fca5a5;
+  }
+}
