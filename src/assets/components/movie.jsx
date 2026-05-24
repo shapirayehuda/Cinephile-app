@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import WatchlistButton from './WatchlistButton'
 import '../movie.css'
 
 export function MovieCard({ movie }) {
@@ -12,7 +13,12 @@ export function MovieCard({ movie }) {
   }, [movie.id, movie.poster])
 
   return (
-    <Link className="movie-card movie-card--link" to={`/movie/${encodeURIComponent(movie.id)}`}>
+    <article className="movie-card">
+      <WatchlistButton movie={movie} className="movie-card__watchlist" />
+      <Link
+        className="movie-card__link"
+        to={`/movie/${encodeURIComponent(movie.id)}`}
+      >
       <div className="movie-card__media">
         {showPoster ? (
           <img
@@ -33,6 +39,7 @@ export function MovieCard({ movie }) {
         <p>Year: {movie.year}</p>
         <p>Rating: {movie.rating ?? '—'}</p>
       </div>
-    </Link>
+      </Link>
+    </article>
   )
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { fetchMovieByImdbId } from '../api/omdb'
 import AppLoader from '../assets/components/AppLoader'
+import WatchlistButton from '../assets/components/WatchlistButton'
 import './movie-detail.css'
 
 function disp(v) {
@@ -122,7 +123,10 @@ export default function MovieDetailPage() {
           </div>
 
           <div>
-          <h1 className="movie-detail__title">{disp(detail.Title)}</h1>
+          <div className="movie-detail__title-row">
+            <h1 className="movie-detail__title">{disp(detail.Title)}</h1>
+            <WatchlistButton movie={detail} />
+          </div>
           <p className="movie-detail__sub">
             {disp(detail.Year)} · {disp(detail.Type)} · {disp(detail.Runtime)}
           </p>

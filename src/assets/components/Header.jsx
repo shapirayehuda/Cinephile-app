@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useDiscovery } from '../../context/DiscoveryContext'
+import { useWatchlist } from '../../context/WatchlistContext'
 import HeaderSearch from './HeaderSearch'
 import ThemeToggle from './ThemeToggle'
 
 export default function Header() {
   const { resetToFeed } = useDiscovery()
+  const { watchlistCount } = useWatchlist()
 
   return (
     <header className="site-header">
@@ -26,6 +28,12 @@ export default function Header() {
         </div>
 
         <div className="site-header__actions">
+          <Link to="/watchlist" className="site-header__watchlist">
+            Watchlist
+            {watchlistCount > 0 && (
+              <span className="site-header__watchlist-count">{watchlistCount}</span>
+            )}
+          </Link>
           <ThemeToggle />
           <HeaderSearch />
         </div>
