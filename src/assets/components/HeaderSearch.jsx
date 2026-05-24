@@ -1,6 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useDiscovery } from '../../context/DiscoveryContext'
+import { useDebouncedValue } from '../../hooks/useDebouncedValue'
+
+const SEARCH_DEBOUNCE_MS = 400
 
 const GENRES = [
   '',
@@ -39,6 +42,12 @@ export default function HeaderSearch() {
   const [country, setCountry] = useState('')
   const [filtersOpen, setFiltersOpen] = useState(false)
 
+  const searchCriteria = useMemo(
+    () => ({ query, year, genres, country }),
+    [query, year, genres, country],
+  )
+  const debouncedSearch = useDebouncedValue(searchCriteria, SEARCH_DEBOUNCE_MS)
+
   useEffect(() => {
     searchInputRef.current?.focus()
   }, [])
@@ -53,34 +62,38 @@ export default function HeaderSearch() {
   }, [searchTrigger])
 
   useEffect(() => {
-    const id = window.setTimeout(() => {
-      const q = query.trim()
-      const hasFilters =
-        Boolean(year.trim()) || genres.length > 0 || Boolean(country.trim())
+    const q = debouncedSearch.query.trim()
+    const trimmedYear = debouncedSearch.year.trim()
+    const selectedGenres = debouncedSearch.genres
+    const trimmedCountry = debouncedSearch.country.trim()
+    const hasFilters =
+      Boolean(trimmedYear) || selectedGenres.length > 0 || Boolean(trimmedCountry)
 
-      if (!q && !hasFilters) {
-        if (searchTriggerRef.current !== null) {
-          resetToFeed()
-        }
-        return
+    if (!q && !hasFilters) {
+      if (searchTriggerRef.current !== null) {
+        resetToFeed()
       }
+      return
+    }
 
-      if (!q && hasFilters) {
-        return
-      }
+    if (!q && hasFilters) {
+      return
+    }
 
-      if (q.length > 0 && q.length < 2) {
-        return
-      }
+    if (q.length > 0 && q.length < 2) {
+      return
+    }
 
-      if (location.pathname !== '/') {
-        navigate('/')
-      }
-      submitSearch({ query: q, year, genre: genres, country })
-    }, 350)
-
-    return () => window.clearTimeout(id)
-  }, [query, year, genres, country, location.pathname, navigate, resetToFeed, submitSearch])
+    if (location.pathname !== '/') {
+      navigate('/')
+    }
+    submitSearch({
+      query: q,
+      year: trimmedYear,
+      genre: selectedGenres,
+      country: trimmedCountry,
+    })
+  }, [debouncedSearch, location.pathname, navigate, resetToFeed, submitSearch])
 
   useEffect(() => {
     function handleClickOutside(event) {
