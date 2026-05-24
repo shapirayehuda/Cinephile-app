@@ -1,11 +1,12 @@
 import MovieCardSkeleton from './MovieCardSkeleton'
 import '../movie.css'
-import '../skeleton.css'
 
-export default function MovieGridSkeleton({ count = 8, label = 'Loading movies' }) {
+const DEFAULT_COUNT = 4
+
+export default function MovieGridSkeleton({ count = DEFAULT_COUNT, label = 'Loading movies' }) {
   return (
     <div
-      className="movie-grid-skeleton"
+      className="movie-grid-skeleton skeleton-shimmer-host"
       role="status"
       aria-live="polite"
       aria-busy="true"

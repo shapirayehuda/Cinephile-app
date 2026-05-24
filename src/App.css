@@ -784,6 +784,7 @@
 
 .movie-card-skeleton {
   pointer-events: none;
+  contain: layout style;
 }
 
 .movie-card-skeleton__poster {
@@ -894,6 +895,10 @@
 
   .movie-detail-skeleton__content {
     width: 100%;
+  }
+
+  .movie-grid-skeleton__list .virtuoso-movie-item:nth-child(n + 5) {
+    display: none;
   }
 }
 
