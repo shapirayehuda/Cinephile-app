@@ -27,6 +27,19 @@ jobs:
 
       - run: npm ci
 
+      - name: Validate OMDb API key secret
+        env:
+          VITE_OMDB_API_KEY: ${{ secrets.VITE_OMDB_API_KEY }}
+        run: |
+          if [ -z "$VITE_OMDB_API_KEY" ]; then
+            echo "::error::Missing secret VITE_OMDB_API_KEY. Add it under Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          if [ "$VITE_OMDB_API_KEY" = "VITE_OMDB_API_KEY" ]; then
+            echo "::error::Secret value must be your real OMDb key, not the text VITE_OMDB_API_KEY."
+            exit 1
+          fi
+
       - name: Build
         run: npm run build
         env:
