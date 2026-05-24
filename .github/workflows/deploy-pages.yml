@@ -25,6 +25,9 @@ jobs:
           node-version: 22
           cache: npm
 
+      # package-lock.json was generated with npm 11; runner ships npm 10
+      - run: npm install -g npm@11
+
       - run: npm ci
 
       - name: Build
