@@ -28,13 +28,15 @@ export default function Header() {
         </div>
 
         <div className="site-header__actions">
-          <Link to="/watchlist" className="site-header__watchlist">
-            Watchlist
-            {watchlistCount > 0 && (
-              <span className="site-header__watchlist-count">{watchlistCount}</span>
-            )}
-          </Link>
-          <ThemeToggle />
+          <div className="site-header__toolbar">
+            <Link to="/watchlist" className="site-header__watchlist">
+              Watchlist
+              {watchlistCount > 0 && (
+                <span className="site-header__watchlist-count">{watchlistCount}</span>
+              )}
+            </Link>
+            <ThemeToggle />
+          </div>
           <HeaderSearch />
         </div>
       </div>
