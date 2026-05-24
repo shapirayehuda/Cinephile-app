@@ -82,17 +82,9 @@ function toMovieList(data, options = {}) {
   })
 }
 
-function yearSortValue(yearStr) {
-  if (!yearStr || yearStr === 'N/A') return 0
-  const years = yearStr.match(/\d{4}/g)
-  if (!years) return 0
-  return Math.max(...years.map(Number))
-}
+import { sortMoviesNewestFirst } from '../utils/sortMovies.js'
 
-/** @param {Array<{ id: string, title: string, year: string }>} movies */
-export function sortMoviesNewestFirst(movies) {
-  return [...movies].sort((a, b) => yearSortValue(b.year) - yearSortValue(a.year))
-}
+export { sortMoviesNewestFirst }
 
 /**
  * First page of title search (movies only). Use fetchMovieFeedPage for page 2+.

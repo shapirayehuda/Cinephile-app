@@ -567,6 +567,20 @@
   .watchlist-page__grid {
     padding: 0.65rem;
   }
+
+  .movie-sort-bar {
+    justify-content: stretch;
+    padding-inline: 0.65rem;
+  }
+
+  .movie-sort {
+    width: 100%;
+  }
+
+  .movie-sort__select {
+    flex: 1;
+    max-width: none;
+  }
 }
 
 @media (max-width: 640px) {
@@ -618,6 +632,47 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+
+.movie-sort-bar {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem 1rem 0;
+}
+
+.movie-sort-bar--watchlist {
+  padding-top: 0.25rem;
+}
+
+.movie-sort {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.movie-sort__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-h);
+  white-space: nowrap;
+}
+
+.movie-sort__select {
+  font: inherit;
+  font-size: 0.88rem;
+  padding: 0.38rem 2rem 0.38rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-h);
+  cursor: pointer;
+  max-width: min(100%, 14rem);
+}
+
+.movie-sort__select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .app-status {

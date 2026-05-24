@@ -1,15 +1,16 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import VirtualMovieGrid from '../assets/components/VirtualMovieGrid'
 import AppLoader from '../assets/components/AppLoader'
+import MovieSortSelect from '../assets/components/MovieSortSelect'
 import {
   initMovieFeed,
   fetchMovieFeedPage,
   searchTitleFirstPage,
   filterCardsByGenreAndCountry,
   enrichCardsWithRatings,
-  sortMoviesNewestFirst,
 } from '../api/omdb'
 import { useDiscovery } from '../context/DiscoveryContext'
+import { sortMovies } from '../utils/sortMovies'
 
 function mergeUniqueById(prev, next) {
   const seen = new Set(prev.map((m) => m.id))
@@ -19,7 +20,7 @@ function mergeUniqueById(prev, next) {
     seen.add(m.id)
     added.push(m)
   }
-  return sortMoviesNewestFirst([...prev, ...added])
+  return [...prev, ...added]
 }
 
 export default function MoviesHomePage() {
@@ -31,6 +32,12 @@ export default function MoviesHomePage() {
   const [loading, setLoading] = useState(true)
   const [loadingMore, setLoadingMore] = useState(false)
   const [error, setError] = useState(null)
+  const [sortBy, setSortBy] = useState('year-desc')
+
+  const sortedMovies = useMemo(
+    () => sortMovies(movies, sortBy),
+    [movies, sortBy],
+  )
 
   const nextPageRef = useRef(2)
   const loadingMoreRef = useRef(false)
@@ -219,12 +226,21 @@ export default function MoviesHomePage() {
         </div>
       )}
       {!loading && !error && movies.length > 0 && (
-        <VirtualMovieGrid
-          movies={movies}
-          hasMore={hasMore}
-          loadingMore={loadingMore}
-          onLoadMore={loadMore}
-        />
+        <>
+          <div className="movie-sort-bar">
+            <MovieSortSelect
+              id="discovery-movie-sort"
+              value={sortBy}
+              onChange={setSortBy}
+            />
+          </div>
+          <VirtualMovieGrid
+            movies={sortedMovies}
+            hasMore={hasMore}
+            loadingMore={loadingMore}
+            onLoadMore={loadMore}
+          />
+        </>
       )}
     </div>
   )

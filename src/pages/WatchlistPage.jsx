@@ -1,10 +1,18 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import WatchlistCard from '../assets/components/WatchlistCard'
+import MovieSortSelect from '../assets/components/MovieSortSelect'
 import { useWatchlist } from '../context/WatchlistContext'
+import { sortMovies } from '../utils/sortMovies'
 
 export default function WatchlistPage() {
   const { watchlist, clearWatchlist } = useWatchlist()
+  const [sortBy, setSortBy] = useState('year-desc')
+
+  const sortedWatchlist = useMemo(
+    () => sortMovies(watchlist, sortBy),
+    [watchlist, sortBy],
+  )
 
   useEffect(() => {
     document.title = `Watchlist · Cinephile`
@@ -55,13 +63,22 @@ export default function WatchlistPage() {
           </Link>
         </div>
       ) : (
-        <ul className="virtuoso-movie-list watchlist-page__grid">
-          {watchlist.map((movie) => (
-            <li key={movie.id} className="virtuoso-movie-item">
-              <WatchlistCard movie={movie} />
-            </li>
-          ))}
-        </ul>
+        <>
+          <div className="movie-sort-bar movie-sort-bar--watchlist">
+            <MovieSortSelect
+              id="watchlist-movie-sort"
+              value={sortBy}
+              onChange={setSortBy}
+            />
+          </div>
+          <ul className="virtuoso-movie-list watchlist-page__grid">
+            {sortedWatchlist.map((movie) => (
+              <li key={movie.id} className="virtuoso-movie-item">
+                <WatchlistCard movie={movie} />
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </div>
   )
